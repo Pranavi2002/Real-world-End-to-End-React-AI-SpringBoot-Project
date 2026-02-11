@@ -1,0 +1,36 @@
+name: CI - Build & Test Docker Images
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      # ---------- Frontend ----------
+      - name: Build Frontend Image
+        run: |
+          docker build -t certify-ai-frontend ./certify_ai_frontend
+
+      # ---------- Backend ----------
+      - name: Build Backend Image
+        run: |
+          docker build -t certify-ai-backend ./certify-ai-backend
+
+      # ---------- AI Service ----------
+      - name: Build AI Service Image
+        run: |
+          docker build -t certify-ai-ai-service ./certify_ai_service
+
+      - name: Success message
+        run: echo "✅ All Docker images built successfully"

@@ -22,10 +22,15 @@ jobs:
         run: |
           docker build -t certify-ai-frontend ./certify_ai_frontend
 
-      # ---------- Backend ----------
+      # ---------- Backend (FIX STARTS HERE) ----------
+      - name: Build backend JAR
+        working-directory: ./certify-ai-backend
+        run: mvn clean package -DskipTests
+
       - name: Build Backend Image
         run: |
           docker build -t certify-ai-backend ./certify-ai-backend
+      # ---------- Backend (FIX ENDS HERE) ----------
 
       # ---------- AI Service ----------
       - name: Build AI Service Image

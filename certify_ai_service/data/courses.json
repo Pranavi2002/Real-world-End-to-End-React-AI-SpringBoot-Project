@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Data Science with Python",
+    "description": "Python, pandas, numpy, machine learning fundamentals"
+  },
+  {
+    "id": 2,
+    "name": "AWS Cloud Practitioner",
+    "description": "Cloud concepts, AWS core services, security"
+  },
+  {
+    "id": 3,
+    "name": "Spring Boot Microservices",
+    "description": "Java, Spring Boot, REST APIs, microservices architecture"
+  }
+]

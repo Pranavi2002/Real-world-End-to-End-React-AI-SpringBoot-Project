@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # ------------------------------
+  # Frontend service: React app
+  # ------------------------------
+  frontend:
+    build:
+      context: ./certify_ai_frontend   # Path to React frontend Dockerfile
+    image: certify-ai-frontend:latest
+    ports:
+      - "3000:80"       # React app will be accessible on localhost:3000
+    depends_on:
+      - backend         # Waits for backend to be ready before starting
+
+  # ------------------------------
+  # Backend service: Spring Boot
+  # ------------------------------
+  backend:
+    build:
+      context: ./certify-ai-backend   # Path to Spring Boot Dockerfile
+    image: certify-ai-backend:latest
+    ports:
+      - "8080:8080"     # Backend accessible on localhost:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/cert_platform
+      SPRING_DATASOURCE_USERNAME: postgres        # Replace with your Postgres username
+      SPRING_DATASOURCE_PASSWORD: pranavi123          # Replace with your Postgres password
+      AI_SERVICE_URL: http://ai-service:5000/recommend
+    depends_on:
+      - db               # Waits for Postgres DB to start
+      - ai-service       # Waits for AI service to start
+
+  # ------------------------------
+  # AI service: Python FastAPI or Flask
+  # ------------------------------
+  ai-service:
+    build:
+      context: ./certify_ai_service    # Path to Python AI service Dockerfile
+    image: certify-ai-ai-service:latest
+    ports:
+      - "5000:5000"     # AI service accessible on localhost:5000
+
+  # ------------------------------
+  # Database service: PostgreSQL
+  # ------------------------------
+  db:
+    image: postgres:16-alpine
+    container_name: certify-ai-db
+    ports:
+      - "5433:5432"     # DB accessible on localhost:5432, map container 5432 to host 5433
+    environment:
+      POSTGRES_DB: cert_platform        # Name of the database
+      POSTGRES_USER: postgres           # DB username
+      POSTGRES_PASSWORD: pranavi123         # DB password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data   # Persistent storage for DB data
+
+# ------------------------------
+# Volumes for persistent data
+# ------------------------------
+volumes:
+  postgres-data:
+    # Data stored here persists even if container is removed

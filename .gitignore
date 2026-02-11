@@ -1,0 +1,30 @@
+# Node / React frontend
+certify_ai_frontend/node_modules/
+certify_ai_frontend/build/
+certify_ai_frontend/.env
+certify_ai_frontend/public/config.json   # optional: ignore if secret
+
+# Spring Boot backend
+certify-ai-backend/target/
+certify-ai-backend/.classpath
+certify-ai-backend/.project
+certify-ai-backend/.settings/
+certify-ai-backend/.vscode/
+certify-ai-backend/application.properties   # don't push sensitive properties
+
+# AI service
+certify_ai_service/__pycache__/
+certify_ai_service/venv/
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Root-level folder to ignore
+docs/
+
+# General ignores
+*.log
+.DS_Store
+
+# Ignore Word temporary files
+~$*

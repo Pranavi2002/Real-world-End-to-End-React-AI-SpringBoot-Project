@@ -22,9 +22,15 @@ spec:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:postgresql://postgres:5432/cert_platform
         - name: SPRING_DATASOURCE_USERNAME
-          value: postgres
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: username
         - name: SPRING_DATASOURCE_PASSWORD
-          value: pranavi123
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: password
         - name: AI_SERVICE_URL
           value: http://ai-service:5000/recommend
 ---

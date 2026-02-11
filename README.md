@@ -83,6 +83,10 @@ docker-compose.yml       → Local multi-service setup
 
 ---
 
+Perfect — we can **update your Analytics section** to fully reflect the features you implemented. Here’s how you can modify it in your README:
+
+---
+
 ### 🔹 Layer 3: Analytics (Admin Only)
 
 * Analytics data model for users, courses, and certifications
@@ -90,9 +94,10 @@ docker-compose.yml       → Local multi-service setup
 * Analytics REST APIs
 * Dashboard components:
 
-  * Charts (usage, course popularity)
-  * Tables (user activity, certifications)
-* Access controlled via frontend RBAC
+  * **Charts** (usage, course popularity) with **download options** (PNG export)
+  * **Tables** (user activity, certifications) with **CSV/Excel export**
+  * **KPI Cards** on top for new / active / inactive users; clicking a KPI expands a **detailed table** of user info
+* Access controlled via frontend RBAC (admin only)
 * Foundation for predictive analytics (optional extension)
 
 ---
@@ -192,6 +197,42 @@ kubectl apply -f k8s/
 * Docker Compose
 * Kubernetes (Minikube)
 * GitHub Actions (CI/CD)
+
+---
+## 🖼️ Screenshots
+
+### Landing Page
+![Landing](Screenshots/Landing.png)
+
+### Public Courses Page
+![Public Courses](Screenshots/PublicCourses.png)
+
+### Signup Page
+![Signup](Screenshots/Signup.png)
+
+### Login Page
+![Login](Screenshots/Login.png)
+
+### User Dashboard
+![Normal Dashboard](Screenshots/NormalDashboard.png)
+
+### User Profile
+![Normal Profile](Screenshots/NormalProfile.png)
+
+### Admin Dashboard
+![Admin Dashboard](Screenshots/AdminDashboard.png)
+
+### Admin Profile
+![Admin Profile](Screenshots/AdminProfile.png)
+
+### Analytics - Charts & KPI Cards
+![Analytics1](Screenshots/Analytics1.png)
+![Analytics2](Screenshots/Analytics2.png)
+![Analytics3](Screenshots/Analytics3.png)
+![Analytics4](Screenshots/Analytics4.png)
+
+### AI Recommendations
+![AI Recommendation](Screenshots/Recommendation.png)
 
 ---
 
